@@ -48,7 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\script\Game.cs" />
      <Compile Include="Assets\script\IA.cs" />
-     <Compile Include="Assets\script\Node.cs" />
      <Compile Include="Assets\script\Nodo.cs" />
      <Compile Include="Assets\script\Tile.cs" />
  <Reference Include="UnityEngine.UI">
