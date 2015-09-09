@@ -47,17 +47,30 @@ public class Game : MonoBehaviour
     {
         Board[i][j] = 2;
         PlayerTurn = false;
-        _ia.MakePlay();
 
-        if(CheckVictory(i,j))
+        if (CheckVictory(i, j))
+        {
             Debug.Log("VICTORY");
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
+
+        _ia.MakePlay();
     }
 
     public void EndComputerTurn(int i, int j)
     {
+      //  Debug.Log(i);
+      //  Debug.Log(j);
         _board[i][j].GetComponent<Tile>().PutPiece(White);
         Board[i][j] = 1;
         PlayerTurn = true;
+
+        if (CheckVictory(i, j))
+        {
+            Debug.Log("VICTORY");
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 
     public bool CheckVictory(int i, int j)
@@ -73,6 +86,7 @@ public class Game : MonoBehaviour
         int secondCheckSum = 0;
         for (int m = 0; m <= 5; m++)
         {
+          //  Debug.Log("VICTORYHori first : " + firstCheckSum);
             firstCheckSum = m;
             if (i + m >= 15)
                 break;
@@ -80,8 +94,7 @@ public class Game : MonoBehaviour
             if (Board[i + m][j] != v)
                 break;
         }
-
-
+        
         for (int m = 0; m >= -5; m--)
         {
             secondCheckSum = -m;
@@ -91,6 +104,9 @@ public class Game : MonoBehaviour
             if (Board[i + m][j] != v)
                 break;
         }
+//        if (firstCheckSum + secondCheckSum > 5)
+//            Debug.Log("VICTORYHori first : "+firstCheckSum);
+//            Debug.Log("VICTORYHori second : " + secondCheckSum);
 
         return (firstCheckSum+secondCheckSum > 5);
     }
@@ -109,9 +125,7 @@ public class Game : MonoBehaviour
 
             if (Board[i][j+m] != v)
                 break;
-
         }
-
 
         for (int m = 0; m >= -5; m--)
         {
@@ -123,6 +137,9 @@ public class Game : MonoBehaviour
                 break;
 
         }
+
+        if (firstCheckSum + secondCheckSum > 5)
+            Debug.Log("VICTORYver");
 
         return (firstCheckSum + secondCheckSum > 5);
     }
@@ -156,6 +173,10 @@ public class Game : MonoBehaviour
 
         }
 
+
+        if (firstCheckSum + secondCheckSum > 5)
+            Debug.Log("VICTORYasc");
+
         return (firstCheckSum + secondCheckSum > 5);
     }
 
@@ -187,6 +208,9 @@ public class Game : MonoBehaviour
                 break;
 
         }
+
+        if (firstCheckSum + secondCheckSum > 5)
+            Debug.Log("VICTORYDESC");
 
         return (firstCheckSum + secondCheckSum > 5);
     }
