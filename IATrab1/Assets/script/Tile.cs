@@ -11,16 +11,16 @@ public class Tile : MonoBehaviour
     public bool IsWhite;
 
     private GameObject _placeHolder;
-    private bool _isFree;
+    private bool _isFree = true;
     
 	void Start ()
 	{
 	    _placeHolder = transform.GetChild(0).gameObject;
-	    _isFree = true;
 	}
 
     public void PutPiece(GameObject piece)
     {
+       
         if (_isFree)
         {
             _isFree = false;

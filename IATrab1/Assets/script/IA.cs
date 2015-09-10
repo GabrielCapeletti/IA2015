@@ -5,12 +5,12 @@ namespace Assets.script
 {
     public class IA : MonoBehaviour
     {
-        private bool _firstPlay;
+        private bool _firstPlay = true;
         private Nodo _node;
         private int[][] _valueBoard;
         private void Start()
         {
-            _firstPlay = true;
+          
             _valueBoard = new int[15][];
             for (int i = 0; i < 15 ; i++)
             {
@@ -29,12 +29,12 @@ namespace Assets.script
 
         public void MakePlay()
         {
-            if (_firstPlay)
-            {
-                FirstPlay();
-               _firstPlay = false;
-                return;
-            }
+//            if (_firstPlay)
+//            {
+//                FirstPlay();
+//               _firstPlay = false;
+//                return;
+//            }
 
             //Se a jogada do jogador estiver na previsão da ia n cria nova arvore, 
             //utiliza o filho com o estado correspondente

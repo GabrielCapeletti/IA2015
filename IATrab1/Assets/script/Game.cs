@@ -14,11 +14,9 @@ public class Game : MonoBehaviour
 
     private GameObject[][]  _board;
     private IA              _ia;
-
+    private bool            _fisrtIaPlay = true;
 	void Start ()
 	{
-	    PlayerTurn = true;
-
 	    Instance = this;
 
 	    _board = new GameObject[15][];
@@ -41,7 +39,18 @@ public class Game : MonoBehaviour
 	    }
 
 	    _ia = GetComponent<IA>();
+        
+        PlayerTurn = true;
 	}
+
+    void Update()
+    {
+//        if (_fisrtIaPlay)
+//        {
+//            _ia.MakePlay();
+//            _fisrtIaPlay = false;
+//        }
+    }
 
     public void EndPlayerTurn(int i, int j)
     {
@@ -50,25 +59,22 @@ public class Game : MonoBehaviour
 
         if (CheckVictory(i, j))
         {
-            Debug.Log("VICTORY");
+            Debug.Log("VICTORY PLAYER");
             Application.LoadLevel(Application.loadedLevel);
         }
-
 
         _ia.MakePlay();
     }
 
     public void EndComputerTurn(int i, int j)
     {
-      //  Debug.Log(i);
-      //  Debug.Log(j);
         _board[i][j].GetComponent<Tile>().PutPiece(White);
         Board[i][j] = 1;
         PlayerTurn = true;
 
         if (CheckVictory(i, j))
         {
-            Debug.Log("VICTORY");
+            Debug.Log("VICTORY PC");
             Application.LoadLevel(Application.loadedLevel);
         }
     }
